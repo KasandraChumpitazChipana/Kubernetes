@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-kasandra-chumpitaz-deployment
+  namespace: kasandra-chumpitaz-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-kasandra-chumpitaz-deployment
+  template:
+    metadata:
+      labels:
+        app: backend-kasandra-chumpitaz-deployment
+    spec:
+      containers:
+      - name: backend-kasandra-chumpitaz-deployment
+        image: chumpitazkasandra/chumpitazkasandra/sheds:latest   # Reemplaza con tu imagen Docker
+        env:
+        - name: db-host
+          valueFrom:
+            secretKeyRef:
+              name: kasandra-chumpitaz-configmap              # Nombre del Secret
+              key: db-host                        # Clave dentro del Secret
+        - name: db-username
+          valueFrom:
+            secretKeyRef:
+              name: kasandra-chumpitaz-configmap
+              key: db-username
+        - name: db-password
+          valueFrom:
+            secretKeyRef:
+              name: kasandra-chumpitaz-configmap
+              key: db-password
+        ports:
+        - containerPort: 8085
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
