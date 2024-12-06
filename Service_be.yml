@@ -7,7 +7,7 @@ spec:
   type: NodePort  # Cambiar a NodePort para acceso externo
   ports:
     - protocol: TCP
-      port: 3001
+      port: 30001
       targetPort: 8085 
       nodePort: 30001
   selector:
