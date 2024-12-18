@@ -4,7 +4,7 @@ metadata:
   name: backend-kasandra-chumpitaz-deployment
   namespace: kasandra-chumpitaz-namespace
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend-kasandra-chumpitaz-deployment
@@ -14,30 +14,17 @@ spec:
         app: backend-kasandra-chumpitaz-deployment
     spec:
       containers:
-      - name: backend-kasandra-chumpitaz-deployment
-        image: chumpitazkasandra/chumpitazkasandra/sheds:latest   # Reemplaza con tu imagen Docker
-        env:
-        - name: db-host
-          valueFrom:
-            secretKeyRef:
-              name: kasandra-chumpitaz-configmap              # Nombre del Secret
-              key: db-host                        # Clave dentro del Secret
-        - name: db-username
-          valueFrom:
-            secretKeyRef:
-              name: kasandra-chumpitaz-configmap
-              key: db-username
-        - name: db-password
-          valueFrom:
-            secretKeyRef:
-              name: kasandra-chumpitaz-configmap
-              key: db-password
+      - name: backend-container
+        image: chumpitazkasandra/backsheds:latest  # Asegúrate de usar la imagen correcta
         ports:
-        - containerPort: 8085
+        - containerPort: 8080  # Puerto del servicio Spring
+        envFrom:
+        - configMapRef:
+            name: kasandra-chumpitaz-configmap
         resources:
           requests:
-            cpu: "250m"
-            memory: "512Mi"
+            cpu: "1"
+            memory: "200Mi"
           limits:
-            cpu: "500m"
-            memory: "1Gi"
+            cpu: "1"
+            memory: "200Mi"
