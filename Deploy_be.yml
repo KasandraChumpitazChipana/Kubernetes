@@ -15,16 +15,16 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: chumpitazkasandra/backsheds:latest  # Asegúrate de usar la imagen correcta
+        image: chumpitazkasandra/backsheds:latest  # Imagen correcta
         ports:
         - containerPort: 8080  # Puerto del servicio Spring
-        envFrom:
-        - configMapRef:
-            name: kasandra-chumpitaz-configmap
         resources:
           requests:
-            cpu: "1"
-            memory: "200Mi"
+            memory: "100Mi"
+            cpu: "500m"   # 0.5 CPU
           limits:
-            cpu: "1"
             memory: "200Mi"
+            cpu: "1"
+        envFrom:    # Configuración del ConfigMap
+        - configMapRef:
+            name: kasandra-chumpitaz-configmap

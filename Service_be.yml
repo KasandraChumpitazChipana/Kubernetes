@@ -12,3 +12,4 @@ spec:
       nodePort: 30001  # Puerto expuesto en el nodo
   selector:
     app: backend-kasandra-chumpitaz-deployment  # Asegura que se asocie con el Deployment del backend
+#kubectl port-forward service/kasandra-chumpitaz-service 8085:80 -n kasandra-chumpitaz-namespace
