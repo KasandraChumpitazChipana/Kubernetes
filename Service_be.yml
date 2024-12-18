@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kasandra-chumpitaz-service
+  name: backend-kasandra-chumpitaz-service
   namespace: kasandra-chumpitaz-namespace
 spec:
-  type: NodePort  # Tipo de servicio NodePort para acceso externo
+  type: NodePort  # Cambia a LoadBalancer si estás en un entorno de nube
   ports:
-    - protocol: TCP
-      port: 80  # Puerto que se usará para acceder desde fuera del clúster
-      targetPort: 8080  # Puerto del backend dentro del contenedor
-      nodePort: 30001  # Puerto expuesto en el nodo
+  - port: 30001       # Puerto que el Service expondrá
+    targetPort: 8080  # Puerto en el contenedor donde tu aplicación escucha
+    nodePort: 30001   # Puerto asignado en el nodo, opcional
   selector:
-    app: backend-kasandra-chumpitaz-deployment  # Asegura que se asocie con el Deployment del backend
+    app: kasandra-chumpitaz-backend-deployment  # Debe coincidir con las etiquetas del Deployment del backend
 #kubectl port-forward service/kasandra-chumpitaz-service 8085:80 -n kasandra-chumpitaz-namespace
