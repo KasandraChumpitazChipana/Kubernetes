@@ -28,3 +28,5 @@ spec:
           limits:
             memory: "512Mi"  # Memoria máxima permitida
             cpu: "500m"      # CPU máxima permitida
+#kubectl apply -f Deploy_be.yml
+#kubectl port-forward service/backend-kasandra-chumpitaz-service 8085:30001 -n kasandra-chumpitaz-namespace

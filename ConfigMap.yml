@@ -9,3 +9,4 @@ data:
   DATABASE_USERNAME: "shed_owner"
   DATABASE_PASSWORD: "LtCjN8zZmUa1"
   feature-x-enabled: "true"
+#kubectl apply -f ConfigMap.yml 

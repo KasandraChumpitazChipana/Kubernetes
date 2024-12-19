@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kasandra-chumpitaz-frontend-deployment
+  namespace: kasandra-chumpitaz-namespace
+spec:
+  replicas: 2  # Número de réplicas (puedes aumentar si es necesario)
+  selector:
+    matchLabels:
+      app: kasandra-chumpitaz-frontend-deployment  # Cambiado para ser más específico
+  template:
+    metadata:
+      labels:
+        app: kasandra-chumpitaz-frontend-deployment  # Cambiado para ser más específico
+    spec:
+      containers:
+      - name: frontend-lizbet-arias
+        image: chumpitazkasandra/frontsheds:latest  # Imagen Docker del contenedor frontend
+        ports:
+        - containerPort: 4200 
