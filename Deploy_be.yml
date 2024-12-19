@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kasandra-chumpitaz-backend-deployment
+  namespace: kasandra-chumpitaz-namespace
+spec:
+  replicas: 2  # Número de réplicas (puedes aumentar si es necesario)
+  selector:
+    matchLabels:
+      app: kasandra-chumpitaz-backend-deployment  # Cambiado para ser más específico
+  template:
+    metadata:
+      labels:
+        app: kasandra-chumpitaz-backend-deployment  # Cambiado para ser más específico
+    spec:
+      containers:
+      - name: backend-kasandra-chumpitaz
+        image: chumpitazkasandra/backsheds:latest  # Imagen Docker de tu contenedor
+        ports:
+        - containerPort: 8080  # Puerto en el contenedor donde escucha la aplicación
+        envFrom:
+        - configMapRef:
+            name: kasandra-chumpitaz-configmap  # Asegúrate de que este ConfigMap exista
+        resources:
+          requests:
+            memory: "256Mi"  # Memoria mínima solicitada
+            cpu: "250m"      # CPU mínima solicitada
+          limits:
+            memory: "512Mi"  # Memoria máxima permitida
+            cpu: "500m"      # CPU máxima permitida
+#kubectl apply -f Deploy_be.yml
+#kubectl port-forward service/backend-kasandra-chumpitaz-service 8085:30001 -n kasandra-chumpitaz-namespace
