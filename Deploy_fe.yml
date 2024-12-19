@@ -14,7 +14,7 @@ spec:
         app: kasandra-chumpitaz-frontend-deployment  # Cambiado para ser más específico
     spec:
       containers:
-      - name: frontend-lizbet-arias
+      - name: frontend-kasandra-chumpitaz
         image: chumpitazkasandra/frontsheds:latest  # Imagen Docker del contenedor frontend
         ports:
         - containerPort: 4200 
