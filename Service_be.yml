@@ -13,6 +13,6 @@ spec:
     app: kasandra-chumpitaz-backend-deployment  # Debe coincidir con las etiquetas del Deployment del backend
 #kubectl apply -f Service_be.yml
 #kubectl get pods -n kasandra-chumpitaz-namespace
-# kubectl port-forward pods/kasandra-chumpitaz-backend-deployment-54987bc4b9-fvhlh 8080:8080 -n kasandra-chumpitaz-namespace
-# kubectl port-forward pods/<el deploy de front>:4200 -n lizbet-arias-namespace     <<-- no me da
+# kubectl port-forward pods/kasandra-chumpitaz-backend-deployment-54987bc4b9-bvmzd 8080:8080 -n kasandra-chumpitaz-namespace
+# kubectl port-forward pods/kasandra-chumpitaz-frontend-deployment-6c9df45d79-dcqm5 4200:4200 -n kasandra-chumpitaz-namespace   <<-- no me da
 #fg %1            (Opcional si se cierr mal, para reanudar el proceso detenido)
