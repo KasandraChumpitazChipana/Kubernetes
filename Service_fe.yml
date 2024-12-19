@@ -10,4 +10,4 @@ spec:
     targetPort: 4200             # Puerto donde escucha la aplicación dentro del contenedor
     nodePort: 30002              # Puerto accesible desde el nodo
   selector:
-    app: kasandra-chumpitaz-frontend  
+    app: kasandra-chumpitaz-frontend-deployment

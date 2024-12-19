@@ -17,4 +17,11 @@ spec:
       - name: frontend-kasandra-chumpitaz
         image: chumpitazkasandra/frontsheds:latest  # Imagen Docker del contenedor frontend
         ports:
-        - containerPort: 4200 
+        - containerPort: 4200
+        resources:
+          requests:
+            memory: "256Mi"  # Memoria mínima solicitada
+            cpu: "250m"      # CPU mínima solicitada
+          limits:
+            memory: "512Mi"  # Memoria máxima permitida
+            cpu: "500m"      # CPU máxima permitida
